@@ -16,8 +16,10 @@
 export CUR="`pwd`"
 export OUTPUT="${CUR}/output/"
 
-export HOSTOPT="--host=arm-hisiv400-linux"
 export CC=arm-hisiv400-linux-gcc
+
+export HOSTOPT="--host=arm-hisiv400-linux"
+export PREFIXOPT="--prefix=${OUTPUT}"
 
 
 rm -fr ${OUTPUT}
@@ -30,5 +32,16 @@ fi
 tar xvfj gmp-6.1.2.tar.bz2
 
 cd gmp-6.1.2
-./configure ${HOSTOPT} --prefix=${OUTPUT} && make && make install
+./configure ${HOSTOPT} ${PREFIXOPT} && make && make install
+cd $CUR
+
+
+rm -fr nettle-3.4
+if [ ! -f nettle-3.4.tar.gz ];then
+    wget https://ftp.gnu.org/gnu/nettle/nettle-3.4.tar.gz
+fi
+tar xvfz nettle-3.4.tar.gz
+
+cd nettle-3.4
+./configure ${HOSTOPT} ${PREFIXOPT} && make && make install
 cd $CUR
