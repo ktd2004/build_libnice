@@ -19,5 +19,6 @@ build_gnutls :
 
 
 build_glib :
-	make -f Makefile.zlib
-	make -f Makefile.libffi
+	#make -f Makefile.zlib
+	#make -f Makefile.libffi
+	make -f Makefile.glib

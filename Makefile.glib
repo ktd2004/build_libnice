@@ -1,0 +1,30 @@
+# vim:set ts=8 sts=8 sw=8 noet:
+DNAME := glib-2.54.2
+FNAME := glib-2.54.2.tar.xz
+DLINK := https://ftp.gnome.org/pub/gnome/sources/glib/2.54/glib-2.54.2.tar.xz
+
+
+CFLAGS := "-I${OUTPUT}/include/ -I${OUTPUT}/lib/libffi-3.2.1/include/"
+LDFLAGS := "-L${OUTPUT}/lib/"
+LIBS := "-lffi -lz"
+
+export CFLAGS LDFLAGS LIBS
+
+
+
+all : ${FNAME} ${DNAME} config
+	make -C ${DNAME}
+	make -C ${DNAME} install
+
+
+${FNAME} :
+	wget ${DLINK}
+
+
+${DNAME} :
+	tar xvfJ ${FNAME}
+
+
+config :
+	cd ${DNAME} && \
+		CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} LIBS=${LIBS} ./configure --host=${HOSTOPT} --prefix=${OUTPUT} --enable-static --disable-libmount --with-pcre=internal glib_cv_stack_grows=no glib_cv_uscore=yes
