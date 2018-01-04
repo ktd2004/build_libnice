@@ -1,0 +1,23 @@
+# vim:set ts=8 sts=8 sw=8 noet:
+DNAME := libffi-3.2.1
+FNAME := libffi-3.2.1.tar.gz
+DLINK := ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
+
+
+
+all : ${FNAME} ${DNAME} config
+	make -C ${DNAME}
+	make -C ${DNAME} install
+
+
+${FNAME} :
+	wget ${DLINK}
+
+
+${DNAME} :
+	tar xvfz ${FNAME}
+
+
+config :
+	cd ${DNAME} && \
+		./configure --host=${HOSTOPT} --prefix=${OUTPUT}
