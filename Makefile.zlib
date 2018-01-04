@@ -1,0 +1,23 @@
+# vim:set ts=8 sts=8 sw=8 noet:
+DNAME := zlib-1.2.11
+FNAME := zlib-1.2.11.tar.gz
+DLINK := https://zlib.net/zlib-1.2.11.tar.gz
+
+
+
+all : ${FNAME} ${DNAME} config
+	make -C ${DNAME}
+	make -C ${DNAME} install
+
+
+${FNAME} :
+	wget ${DLINK}
+
+
+${DNAME} :
+	tar xvfz ${FNAME}
+
+
+config :
+	cd ${DNAME} && \
+		CC=${CC} ./configure --prefix=${OUTPUT}
