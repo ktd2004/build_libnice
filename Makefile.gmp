@@ -1,0 +1,22 @@
+# vim:set ts=8 sts=8 sw=8 noet:
+DNAME := gmp-6.1.2
+FNAME := gmp-6.1.2.tar.bz2
+DLINK := https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2
+
+
+all : ${FNAME} ${DNAME} config
+	make -C ${DNAME}
+	make -C ${DNAME} install
+
+
+${FNAME} :
+	wget ${DLINK}
+
+
+${DNAME} :
+	tar xvfj ${FNAME}
+
+
+config :
+	cd ${DNAME} && \
+		./configure ${HOSTOPT} ${PREFIXOPT}
