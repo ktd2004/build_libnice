@@ -1,7 +1,14 @@
 # vim:set ts=8 sts=8 sw=8 noet:
-DNAME := gmp-6.1.2
-FNAME := gmp-6.1.2.tar.bz2
-DLINK := https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2
+DNAME := nettle-3.4
+FNAME := nettle-3.4.tar.gz
+DLINK := https://ftp.gnu.org/gnu/nettle/nettle-3.4.tar.gz
+
+
+CFLAGS := "-I${OUTPUT}/include/"
+LDFLAGS := "-L${OUTPUT}/lib/"
+
+export CFLAGS LDFLAGS
+
 
 
 all : ${FNAME} ${DNAME} config

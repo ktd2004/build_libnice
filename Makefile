@@ -4,13 +4,11 @@
 CC := arm-hisiv400-linux-gcc
 OUTPUT := $(shell pwd)/output/
 
-HOSTOPT := "--host=arm-hisiv400-linux"
-PREFIXOPT := "--prefix=${OUTPUT}"
+HOSTOPT := arm-hisiv400-linux
 
-
-export CC OUTPUT HOSTOPT PREFIXOPT
-
+export CC OUTPUT HOSTOPT
 
 
 all :
 	make -f Makefile.gmp
+	make -f Makefile.nettle
