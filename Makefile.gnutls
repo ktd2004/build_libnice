@@ -1,0 +1,30 @@
+# vim:set ts=8 sts=8 sw=8 noet:
+DNAME := gnutls-3.5.16
+FNAME := gnutls-3.5.16.tar.xz
+DLINK := https://www.gnupg.org/ftp/gcrypt/gnutls/v3.5/gnutls-3.5.16.tar.xz
+
+
+CFLAGS := "-I${OUTPUT}/include/"
+LDFLAGS := "-L${OUTPUT}/lib/"
+LIBS := "-lhogweed -lnettle -lgmp"
+
+export CFLAGS LDFLAGS
+
+
+
+all : ${FNAME} ${DNAME} config
+	make -C ${DNAME}
+	make -C ${DNAME} install
+
+
+${FNAME} :
+	wget ${DLINK}
+
+
+${DNAME} :
+	tar xvfj ${FNAME}
+
+
+config :
+	cd ${DNAME} && \
+		CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} LIBS=${LIBS} ./configure --host=${HOSTOPT} --prefix=${OUTPUT} --enable-static --with-included-libtasn1 --with-included-unistring --without-idn --without-p11-kit

@@ -12,3 +12,4 @@ export CC OUTPUT HOSTOPT
 all :
 	make -f Makefile.gmp
 	make -f Makefile.nettle
+	make -f Makefile.gnutls
