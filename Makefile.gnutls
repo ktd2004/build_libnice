@@ -22,7 +22,7 @@ ${FNAME} :
 
 
 ${DNAME} :
-	tar xvfj ${FNAME}
+	tar xvfJ ${FNAME}
 
 
 config :

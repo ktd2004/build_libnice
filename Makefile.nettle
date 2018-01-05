@@ -21,7 +21,7 @@ ${FNAME} :
 
 
 ${DNAME} :
-	tar xvfj ${FNAME}
+	tar xvfx ${FNAME}
 
 
 config :
