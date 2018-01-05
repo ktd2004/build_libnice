@@ -9,16 +9,20 @@ HOSTOPT := arm-hisiv400-linux
 export CC OUTPUT HOSTOPT
 
 
-all : build_gnutls build_glib
+all : build_gnutls build_glib build_libnice
 
 
 build_gnutls :
-	make -f Makefile.gmp
-	make -f Makefile.nettle
-	make -f Makefile.gnutls
+	#make -f Makefile.gmp
+	#make -f Makefile.nettle
+	#make -f Makefile.gnutls
 
 
 build_glib :
-	make -f Makefile.zlib
-	make -f Makefile.libffi
-	make -f Makefile.glib
+	#make -f Makefile.zlib
+	#make -f Makefile.libffi
+	#make -f Makefile.glib
+
+
+build_libnice :
+	make -f Makefile.libnice
